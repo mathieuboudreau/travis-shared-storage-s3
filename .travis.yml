@@ -4,6 +4,6 @@ before_install:
 jobs:
   include:
   - stage: Create demo files and send to S3
-    script: pwd;ls;touch /home/travis/build/mathieuboudreau/foo.txt;echo "Hello world!" >> /home/travis/build/mathieuboudreau/$TRAVIS_BUILD_NUMBER/foo.txt;aws s3 cp /home/travis/build/mathieuboudreau/$TRAVIS_BUILD_NUMBER/foo.txt s3://travis-shared-storage-s3/$TRAVIS_BUILD_NUMBER/foo.txt
+    script: pwd;ls;touch /home/travis/build/mathieuboudreau/$TRAVIS_BUILD_NUMBER/foo.txt;echo "Hello world!" >> /home/travis/build/mathieuboudreau/$TRAVIS_BUILD_NUMBER/foo.txt;aws s3 cp /home/travis/build/mathieuboudreau/$TRAVIS_BUILD_NUMBER/foo.txt s3://travis-shared-storage-s3/$TRAVIS_BUILD_NUMBER/foo.txt
   - stage: Fetch and read data from S3
     script: ls /home/travis/build/mathieuboudreau/foo.txt;aws s3 cp s3://travis-shared-storage-s3/$TRAVIS_BUILD_NUMBER/foo.txt /home/travis/build/mathieuboudreau/foo.txt;more /home/travis/build/mathieuboudreau/foo.txt
